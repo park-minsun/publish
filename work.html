@@ -1,0 +1,200 @@
+<!-- https://www.youtube.com/watch?v=8qdyH_YjkmQ 강의 -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>work list 강의</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:ital,wght@0,300..700;1,300..700&family=Noto+Sans+KR:wght@100..900&family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/work.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="./js/jquery.scrolla.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/ScrollTrigger.min.js"></script>
+</head>
+<body>
+    <div class="wrap">
+        <section class="visual en animate" data-animate="motion">
+            <div class="inner">
+                <div class="textBox">
+                    <p class="title">My<span class="en2">Work</span></p>
+                    <p class="subTitle">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                        Totam beatae, quam voluptas iste, impedit consequuntur veritatis doloremque 
+                        culpa dolor quia consectetur aliquam ipsam eveniet amet possimus corrupti. Recusandae, aperiam id.
+                    </p>
+                    <p class="text">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                        Totam beatae, quam voluptas iste, impedit consequuntur veritatis doloremque 
+                        culpa dolor quia consectetur aliquam ipsam eveniet amet possimus corrupti. Recusandae, aperiam id.
+                    </p>
+                </div>
+                <div class="aniBox">
+                    <img src="./images/gsap/spin.svg" class="spin" alt="my work" />
+                    <img src="./images/gsap/main-arrow.svg" class="arrow" alt="arrow" />
+                </div>
+            </div>
+        </section>
+
+        <!-- work -->
+        <section class="work">
+            <ul>
+                <li>
+                    <a href="javascript:;">
+                        <div class="imgBox">
+                            <img src="https://i.pinimg.com/originals/53/1f/d0/531fd04b105a28a183562824466a9f72.gif" alt="">
+                        </div><div class="textBox">
+                            <p class="title">Site name</p>
+                            <p class="text en2">UI/UX Design, Web Publishing</p>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;">
+                        <div class="imgBox">
+                            <img src="https://i.pinimg.com/736x/36/f8/06/36f806e48fd1f057fd773c5e57902dec.jpg" alt="">
+                        </div><div class="textBox">
+                            <p class="title">Site name</p>
+                            <p class="text en2">UI/UX Design, Web Publishing</p>
+                        </div>
+                    </a>
+                </li>
+                 <li>
+                    <a href="javascript:;">
+                        <div class="imgBox">
+                            <img src="https://i.pinimg.com/736x/73/cf/24/73cf241d376e3f215509fce528248891.jpg" alt="">
+                        </div><div class="textBox">
+                            <p class="title">Site name</p>
+                            <p class="text en2">UI/UX Design, Web Publishing</p>
+                        </div>
+                    </a>
+                </li>
+                 <li>
+                    <a href="javascript:;">
+                        <div class="imgBox">
+                            <img src="https://i.pinimg.com/736x/b3/cd/37/b3cd37184a12ff2bee4189015c448c6f.jpg" alt="">
+                        </div><div class="textBox">
+                            <p class="title">Site name</p>
+                            <p class="text en2">UI/UX Design, Web Publishing</p>
+                        </div>
+                    </a>
+                </li>
+                 <li>
+                    <a href="javascript:;">
+                        <div class="imgBox">
+                            <img src="https://i.pinimg.com/736x/14/e9/05/14e905a3cd8290f98baa63d5ffa0168a.jpg" alt="">
+                        </div><div class="textBox">
+                            <p class="title">Site name</p>
+                            <p class="text en2">UI/UX Design, Web Publishing</p>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;">
+                        <div class="imgBox">
+                            <img src="https://i.pinimg.com/736x/81/86/31/818631c850a3a98f77f967e19bfb06a7.jpg" alt="">
+                        </div><div class="textBox">
+                            <p class="title">Site name</p>
+                            <p class="text en2">UI/UX Design, Web Publishing</p>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </section>
+    </div>
+
+    <script>
+       $(document).ready(function(){
+            $('.animate').scrolla({
+                mobile: true,
+                once: false,
+            })
+
+            $(function(){
+                gsap.registerPlugin(ScrollTrigger);
+
+                ScrollTrigger.matchMedia({
+                    '(min-width: 1024px)': function(){
+                        // 가로스크롤
+                        let list = gsap.utils.toArray('.work ul li');
+                        let scrollTween = gsap.to(list, {
+                            xPercent: -100 * (list.length - 1), // 원래 리스트의 개수보다 1을 빼서 길이를 구한 후에 가로로 이동
+                            ease: 'none',
+                            scrollTrigger: {
+                                trigger: '.work',
+                                pin: true,
+                                scrub: 1,
+                                start: 'center center',
+                                end: '300%', // 뷰포트 높이의 300% -> 숫자가 클수록 느려진다.
+                                //markers: true
+                            }
+                        });
+
+                        // 이미지박스 모션
+                        gsap.utils.toArray('.imgBox').forEach(function(imgBox){
+                             // 이미지박스가 커지는 모션
+                            gsap.timeline({
+                                scrollTrigger: {
+                                    trigger: imgBox,
+                                    containerAnimation: scrollTween,
+                                    start: 'center right',
+                                    end: 'center center',
+                                    scrub: true,
+                                    //markers: true,
+                                }
+                            })
+                            .to(imgBox, {'clip-path':'inset(0%)',ease:'none', duration:1}, 0)
+                            
+                            // 이미지박스가 작아지는 애니매이션
+                             gsap.timeline({
+                                scrollTrigger: {
+                                    trigger: imgBox,
+                                    containerAnimation: scrollTween,
+                                    start: 'center center',
+                                    end: 'center left',
+                                    scrub: true,
+                                    //markers: true,
+                                }
+                            })
+                            .to(imgBox, {'clip-path':'inset(30%)',ease:'none', duration:1}, 0)
+                        });
+
+                        //텍스트박스 모션
+                         gsap.utils.toArray('.textBox').forEach(function(textBox){
+                             // 텍스트박스가 커지는 모션
+                            gsap.timeline({
+                                scrollTrigger: {
+                                    trigger: textBox,
+                                    containerAnimation: scrollTween,
+                                    start: 'center 70%',
+                                    end: 'center 40%',
+                                    scrub: true,
+                                    //markers: true,
+                                }
+                            })
+                            .to(textBox, {'opacity':'1','x':-100}, 0)
+                            
+                            // 텍스트박스가 작아지는 애니매이션
+                             gsap.timeline({
+                                scrollTrigger: {
+                                    trigger: textBox,
+                                    containerAnimation: scrollTween,
+                                    start: 'center 30%',
+                                    end: 'center 20%',
+                                    scrub: true,
+                                    //markers: true,
+                                }
+                            })
+                            .to(textBox, {'opacity':'0'}, 0)
+                        });
+
+                    }
+                })
+            });
+        });
+    </script>
+</body>
+</html>
